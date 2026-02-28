@@ -82,7 +82,7 @@ const Header = () => {
             <div key={index} className={styles[`icone${index + 1}`]}>
               <div className={styles.icone1Child} />
               <b className={styles.experienciaTcnica}>{item.label}</b>
-              <img className={iconSvgClasses[index]} src={item.icone} alt="" loading="lazy" />
+              <img className={iconSvgClasses[index]} src={item.icone} alt="Icones services" loading="lazy" />
             </div>
           ))}
         </div>
