@@ -1,4 +1,4 @@
-import { useEffect } from "react"; // <-- Importe o useEffect
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logoFooter from "../../assets/svgs/logos/logoFooter.svg";
 import sebraeLogo from "../../assets/svgs/parceiroSebrae.svg";
@@ -13,8 +13,6 @@ const Footer = () => {
 
   const parceiros = [{ logoParceiro: sebraeLogo, linkParceiro: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessageSebrae)}` }];
 
-  
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -25,15 +23,11 @@ const Footer = () => {
     window.scrollTo({ top, behavior: "smooth" });
   };
 
-  // NOVO: Adicionamos um useEffect que observa mudanças na URL
   useEffect(() => {
-    // Se a página atual for a Home e existir um "#" na URL
     if (location.pathname === "/" && location.hash) {
       const id = location.hash.replace("#", "");
-      // Pega o offset do state que passamos no navigate, ou 0 por padrão
       const offset = location.state?.offset || 0;
 
-      // Um pequeno setTimeout dá tempo para a página Home renderizar os elementos no DOM
       const timer = setTimeout(() => {
         scrollTo(id, offset);
       }, 150);
@@ -42,11 +36,11 @@ const Footer = () => {
     }
   }, [location.pathname, location.hash, location.state]);
 
-  const handleNavClick = (id: string, offset = 0) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string, offset = 0) => {
+    e.preventDefault();
     if (location.pathname === "/") {
       scrollTo(id, offset);
     } else {
-      // AJUSTE: Passamos o offset dentro do 'state' para o useEffect conseguir lê-lo depois
       navigate(`/#${id}`, { state: { offset } });
     }
   };
@@ -96,24 +90,24 @@ const Footer = () => {
             <h4 className={styles.titulosFooter}>Links Rápidos</h4>
             <ul className={styles.listasFooter}>
               <li>
-                <a onClick={() => handleNavClick("inicio", -80)}>Inicio</a>
+                <a href="/#inicio" onClick={(e) => handleNavClick(e, "inicio", -80)}>Inicio</a>
               </li>
               <li>
-                <a onClick={() => handleNavClick("quem-somos")}>Quem Somos</a>
+                <a href="/#quem-somos" onClick={(e) => handleNavClick(e, "quem-somos")}>Quem Somos</a>
               </li>
               <li>
-                <a onClick={() => handleNavClick("nossos-servicos")}>
+                <a href="/#nossos-servicos" onClick={(e) => handleNavClick(e, "nossos-servicos")}>
                   Nossos Serviços
                 </a>
               </li>
               <li>
-                <a onClick={() => handleNavClick("solucoes")}>Soluções</a>
+                <a href="/#solucoes" onClick={(e) => handleNavClick(e, "solucoes")}>Soluções</a>
               </li>
               <li>
                 <a href="/conheca-nosso-time">Nossa Equipe</a>
               </li>
               <li>
-                <a onClick={() => handleNavClick("contatos")}>Contatos</a>
+                <a href="/#contatos" onClick={(e) => handleNavClick(e, "contatos")}>Contatos</a>
               </li>
             </ul>
           </nav>
