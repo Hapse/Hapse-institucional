@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "Segoe UI";
+    src: url(../assets//fonts/Segoe\ UI.ttf);
+}
+
+
+$fontPrimary: "Segoe UI";
+
+$fontSize1: 1rem;
+$fontSize2: 1.25rem;
+$fontSize3: 1.5rem;
+
+
+$weightLight: 300;
+$weightRegular: 400;
+$weightMedium: 500;
+$weightSemiBold: 600;
+$weightBold: 700;
+
+
+$colorGrafite: #41555C;
+$colorLaranja: #E89C3C;
+$colorVerde: #7CA846;
+$colorAzul: #004D61;
+
+$gradienteIconsLaranja:linear-gradient(180deg, #296A70 0%, #9AA686 0.01%, #E89C3C 100%);

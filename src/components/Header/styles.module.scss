@@ -1,0 +1,506 @@
+@use '../../styles/variables' as vars;
+
+/* ════════════════════════════════════════════
+   KEYFRAMES — só transform + opacity (GPU)
+════════════════════════════════════════════ */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ════════════════════════════════════════════
+   CLASSES DE ANIMAÇÃO
+════════════════════════════════════════════ */
+
+/* Texto da esquerda */
+.animFadeSlide {
+    animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Imagens circulares — zoom escalonado */
+.zoomIn1 {
+    animation: zoomIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+.zoomIn2 {
+    animation: zoomIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+.zoomIn3 {
+    animation: zoomIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+/* ════════════════════════════════════════════
+   COMPONENTE
+════════════════════════════════════════════ */
+
+.bannerHeander {
+    width: 100%;
+    min-height: 754px;
+    position: relative;
+    font-size: 16px;
+    color: #fff;
+    font-family: vars.$fontPrimary;
+    background-image: url(/public/imgs/banners/vacasBanner.png);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    @media(min-width:800px) {
+        gap: 40px;
+    }
+
+    @media (max-width: 1024px) {
+        min-height: unset;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        min-height: unset;
+        align-items: center;
+    }
+}
+
+.faixaBanner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 113px;
+    pointer-events: none;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+        height: 70px;
+    }
+}
+
+.faixaBannerChild {
+    position: absolute;
+    bottom: 0;
+    left: -4px;
+    background: linear-gradient(90deg, rgba(106, 142, 62, 0.64), #7ca845 99.99%);
+    width: 60%;
+    height: 46px;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 30px;
+    }
+}
+
+.faixaBannerChildPai {
+    filter: drop-shadow(-22px 0px 38.5px rgba(0, 0, 0, 0.4));
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 113px;
+
+    @media (max-width: 768px) {
+        height: 70px;
+    }
+
+    .faixaBannerChildBig {
+        background: linear-gradient(93deg, rgba(123, 167, 70, 1) 0%, rgba(0, 77, 97, 1) 100%);
+        clip-path: polygon(70px 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.titDireita {
+    position: relative;
+    z-index: 2;
+    flex: 1 1 50%;
+    max-width: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 32px;
+    padding: 60px 0 140px 5%;
+
+    @media(max-width: 1200px) {
+        max-width: 45%;
+    }
+
+    @media (max-width: 1440px) {
+        gap: 28px;
+        padding: 50px 0 130px 3%;
+    }
+
+    @media (max-width: 1024px) {
+        flex: unset;
+        max-width: fit-content;
+        padding: 45px 6% 40px 6%;
+        align-items: center;
+        gap: 24px;
+        justify-content: center;
+    }
+}
+
+.tituloBanner {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    text-align: left;
+    font-size: clamp(22px, 3.2vw, 36px);
+    font-family: vars.$fontPrimary;
+    font-weight: 700;
+
+    @media (max-width: 1024px) {
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+    }
+}
+
+.transformandoDesafioEmOportContainer {
+    width: 100%;
+    position: relative;
+    display: block;
+    font-weight: 700;
+    filter: drop-shadow(-7px 4px 8.4px rgba(0, 0, 0, 0.25));
+
+    .oportunidades {
+        font-size: clamp(28px, 4.5vw, 50px);
+        background: linear-gradient(90deg, #3ecf8b 62.98%, #3f84d9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .comConsultoriaEstratgica {
+        font-size: clamp(20px, 2.8vw, 32px);
+        color: #dbb04e;
+    }
+}
+
+.oferecemosServiosPersonaliz {
+    width: 100%;
+    max-width: 580px;
+    position: relative;
+    font-size: clamp(15px, 1.7vw, 20px);
+    font-weight: 600;
+    font-family: 'Segoe UI', sans-serif;
+    color: rgba(255, 255, 255, 0.73);
+    line-height: 1.5;
+
+    @media (max-width: 768px) {
+        max-width: 100%;
+    }
+}
+
+.iconesBanner {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(16px, 3vw, 40px);
+    color: rgba(255, 255, 255, 0.73);
+
+    @media (max-width: 768px) {
+        justify-content: center;
+    }
+}
+
+.icone1,
+.icone2,
+.icone3 {
+    width: clamp(75px, 10vw, 142px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    isolation: isolate;
+    gap: 10px;
+}
+
+.icone1 { justify-content: flex-end; }
+.icone3 { justify-content: center; gap: 9px; }
+
+.icone1Child {
+    width: clamp(44px, 6vw, 80px);
+    height: clamp(44px, 6vw, 80px);
+    position: relative;
+    box-shadow: -6px 6px 16.4px rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    background: linear-gradient(105.61deg, #eed273, #cd9632);
+    z-index: 0;
+    flex-shrink: 0;
+}
+
+.experienciaTcnica {
+    align-self: stretch;
+    height: auto;
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    text-shadow: -1px 3px 2.4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    font-size: clamp(11px, 1.3vw, 16px);
+    text-align: center;
+}
+
+.textoDoSeuPargrafo11,
+.textoDoSeuPargrafo21,
+.textoDoSeuPargrafo31 {
+    position: absolute;
+    margin: 0 !important;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    z-index: 2;
+    width: clamp(22px, 3vw, 40px);
+    height: clamp(28px, 3.8vw, 50px);
+    object-fit: contain;
+}
+
+.textoDoSeuPargrafo31 {
+    width: clamp(25px, 3.4vw, 49px);
+}
+
+.btnsAo {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 2.5vw, 40px);
+    color: #41555c;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+        align-items: center;
+    }
+}
+
+.falarComConsultorParent {
+    box-shadow: 8px -4px 15.3px rgba(255, 255, 255, 0.25) inset,
+        -5px 7px 14.2px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    background: linear-gradient(105.61deg, #eed273, #cd9632);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    gap: 10px;
+    white-space: nowrap;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+
+    @media(min-width: 1024px) {
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 260px;
+        padding: 10px 22px;
+    }
+
+    .falarComConsultor {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: #41555c !important;
+        font-weight: bold;
+        font-size: clamp(14px, 1.5vw, 16px);
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+        &::after {
+            content: '';
+            background-image: url("data:image/svg+xml,%3Csvg width='35' height='35' viewBox='0 0 35 35' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30.692 18.6608L20.8482 28.5045C20.54 28.8127 20.122 28.9859 19.6861 28.9859C19.2503 28.9859 18.8322 28.8127 18.524 28.5045C18.2158 28.1963 18.0427 27.7783 18.0427 27.3424C18.0427 26.9065 18.2158 26.4885 18.524 26.1803L25.5664 19.1407H5.46875C5.03363 19.1407 4.61633 18.9678 4.30865 18.6601C4.00098 18.3524 3.82812 17.9351 3.82812 17.5C3.82812 17.0649 4.00098 16.6476 4.30865 16.3399C4.61633 16.0323 5.03363 15.8594 5.46875 15.8594H25.5664L18.5268 8.81565C18.2185 8.50744 18.0454 8.08942 18.0454 7.65354C18.0454 7.21767 18.2185 6.79964 18.5268 6.49143C18.835 6.18322 19.253 6.01007 19.6889 6.01007C20.1247 6.01007 20.5428 6.18322 20.851 6.49143L30.6947 16.3352C30.8477 16.4878 30.969 16.6691 31.0517 16.8688C31.1344 17.0684 31.1768 17.2825 31.1766 17.4985C31.1763 17.7146 31.1334 17.9285 31.0502 18.128C30.9671 18.3274 30.8453 18.5085 30.692 18.6608Z' fill='%2341555C'/%3E%3C/svg%3E%0A");
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: clamp(24px, 2.8vw, 35px);
+            height: clamp(24px, 2.8vw, 35px);
+            display: block;
+            flex-shrink: 0;
+        }
+    }
+}
+
+.imagensBanners {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+
+    @media(min-width: 700px) {
+        top: 20px !important;
+    }
+
+    .designSemNome61,
+    .salameEQueijo,
+    .vacaCuriosaEEngracadaOlhanIcon {
+        position: absolute;
+        border-radius: 100%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            aspect-ratio: 1/1;
+            border-radius: 1000px;
+        }
+    }
+
+    .designSemNome61 {
+        width: 50%;
+        top: 12%;
+        left: 38%;
+        z-index: 3;
+        border: clamp(5px, 0.6vw, 9px) solid #6A8E3E;
+        box-shadow: -15px 16px 20.5px 0 rgba(0, 0, 0, 0.40);
+
+        @media((min-width: 1024px) and (max-width: 1599px)) {
+            top: 22%;
+        }
+    }
+
+    .salameEQueijo {
+        width: 26%;
+        top: 6%;
+        left: 18%;
+        z-index: 1;
+        border: clamp(5px, 0.6vw, 9px) solid #004D61;
+        box-shadow: -15px 16px 20.5px 0 rgba(0, 0, 0, 0.40);
+
+        @media(max-width: 1399px) {
+            top: 14%;
+            left: 22%;
+        }
+
+        @media((min-width: 1400px) and (max-width: 1599px)) {
+            top: 10%;
+            left: 22%;
+        }
+
+        @media((min-width: 1600px) and (max-width: 1920px)) {
+            top: 3%;
+        }
+    }
+
+    .vacaCuriosaEEngracadaOlhanIcon {
+        width: 33%;
+        top: 28%;
+        left: 8%;
+        z-index: 2;
+        border: clamp(5px, 0.6vw, 9px) solid #E89C3C;
+        box-shadow: -15px 16px 20.5px 0 rgba(0, 0, 0, 0.40);
+
+        @media((min-width: 1024px) and (max-width: 1599px)) {
+            top: 34%;
+        }
+
+        @media((min-width: 1600px) and (max-width: 1920px)) {
+            top: 30%;
+        }
+    }
+
+    /* ── tablet / mobile ── */
+    @media (max-width: 1024px) {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: clamp(60%, 72%, 80%);
+        height: auto;
+        margin: 0 auto 80px auto;
+
+        &::before {
+            content: '';
+            display: block;
+            padding-top: 78%;
+        }
+
+        .salameEQueijo,
+        .vacaCuriosaEEngracadaOlhanIcon {
+            height: 0;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+
+        .designSemNome61 {
+            width: 60%;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            top: 6%;
+            left: 40%;
+            max-width: 400px;
+            box-shadow: -15px 16px 20.5px 0 rgba(0, 0, 0, 0.40);
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+
+            /* mantém o zoom mesmo com o transform do iOS hack */
+            &.zoomIn3 {
+                animation: zoomIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+            }
+
+            .carrosselSwiper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .salameEQueijo {
+            width: 35%;
+            padding-bottom: 35%;
+            top: -8%;
+            left: 15%;
+        }
+
+        .vacaCuriosaEEngracadaOlhanIcon {
+            width: 42%;
+            padding-bottom: 42%;
+            top: 35%;
+            left: 5%;
+        }
+    }
+}
