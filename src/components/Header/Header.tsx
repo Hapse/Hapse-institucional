@@ -9,8 +9,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const bannerSalame = "/imgs/banners/salameQueijo.png";
-const vacas = "/imgs/banners/vacas.jpg";
+const bannerSalame = "/imgs/banners/salameQueijo.webp";
+const vacas = "/imgs/banners/vacas.webp";
 
 const carrosselImages = [
   "/imgs/banners/bannerDoisCarrossel.jpeg",
@@ -82,7 +82,7 @@ const Header = () => {
             <div key={index} className={styles[`icone${index + 1}`]}>
               <div className={styles.icone1Child} />
               <b className={styles.experienciaTcnica}>{item.label}</b>
-              <img className={iconSvgClasses[index]} src={item.icone} alt="" />
+              <img className={iconSvgClasses[index]} src={item.icone} alt="" loading="lazy" />
             </div>
           ))}
         </div>
@@ -111,12 +111,12 @@ const Header = () => {
 
         {/* Salame — delay 1 */}
         <div className={`${styles.salameEQueijo} ${styles.zoomIn1}`}>
-          <img src={bannerSalame} alt="" />
+          <img src={bannerSalame} alt="" loading="lazy" />
         </div>
 
         {/* Vaca — delay 2 */}
         <div className={`${styles.vacaCuriosaEEngracadaOlhanIcon} ${styles.zoomIn2}`}>
-          <img src={vacas} alt="" />
+          <img src={vacas} alt="" loading="lazy" />
         </div>
 
         {/* Carrossel — delay 3 */}
@@ -131,7 +131,7 @@ const Header = () => {
           >
             {carrosselImages.map((src, index) => (
               <SwiperSlide key={index}>
-                <img src={src} alt={`Slide ${index + 1}`} className={styles.carrosselImg} />
+                <img src={src} alt={`Slide ${index + 1}`} className={styles.carrosselImg} loading="lazy" />
               </SwiperSlide>
             ))}
           </Swiper>
